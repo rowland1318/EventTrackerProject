@@ -44,7 +44,12 @@ class HikeTest {
 	@Test
 	void test() {
 		assertNotNull(hike);
-		assertEquals("Frog", hike.getName());
+		assertEquals("Bergen Peak", hike.getName());
+		assertEquals(11.8, hike.getLength());
+		assertEquals(2020, hike.getDate().getYear());
+		assertEquals(4, hike.getDate().getMonthValue());
+		assertEquals(4, hike.getDate().getDayOfMonth());
+		assertEquals("7:17", hike.getTotalTime());
 	}
 
 }

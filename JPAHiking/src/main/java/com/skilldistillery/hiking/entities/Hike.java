@@ -1,5 +1,8 @@
 package com.skilldistillery.hiking.entities;
 
+import java.time.LocalDate;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +15,11 @@ public class Hike {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
+	private double length;
+	private LocalDate date;
+	
+	@Column(name="total_time")
+	private String totalTime;
 
 	
 	public int getId() {
@@ -29,24 +37,60 @@ public class Hike {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 
-	public Hike(int id, String name) {
+	
+	public Hike() {
+		super();
+	}
+
+
+	public double getLength() {
+		return length;
+	}
+
+	public void setLength(double length) {
+		this.length = length;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public String getTotalTime() {
+		return totalTime;
+	}
+
+	public void setTotalTime(String totalTime) {
+		this.totalTime = totalTime;
+	}
+
+	public Hike(int id, String name, double length, LocalDate date, String totalTime) {
 		super();
 		this.id = id;
 		this.name = name;
-	}
-
-	public Hike() {
-		super();
+		this.length = length;
+		this.date = date;
+		this.totalTime = totalTime;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Hikes [id=");
+		builder.append("Hike [id=");
 		builder.append(id);
 		builder.append(", name=");
 		builder.append(name);
+		builder.append(", length=");
+		builder.append(length);
+		builder.append(", date=");
+		builder.append(date);
+		builder.append(", totalTime=");
+		builder.append(totalTime);
 		builder.append("]");
 		return builder.toString();
 	}
@@ -72,5 +116,7 @@ public class Hike {
 			return false;
 		return true;
 	}
+	
+	
 
 }

@@ -22,9 +22,10 @@ DROP TABLE IF EXISTS `hike` ;
 
 CREATE TABLE IF NOT EXISTS `hike` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `distance` DOUBLE NULL,
-  `time` DATETIME NULL,
+  `name` VARCHAR(200) NOT NULL,
+  `length` DOUBLE NOT NULL,
+  `date` DATE NOT NULL,
+  `total_time` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -44,7 +45,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `hikingdb`;
-INSERT INTO `hike` (`id`, `name`, `distance`, `time`) VALUES (1, 'Frog', NULL, NULL);
+INSERT INTO `hike` (`id`, `name`, `length`, `date`, `total_time`) VALUES (1, 'Bergen Peak', 11.8, '2020-04-04', '7:17');
+INSERT INTO `hike` (`id`, `name`, `length`, `date`, `total_time`) VALUES (2, 'Bear Peak', 11.3, '2020-03-29', '6:51');
+INSERT INTO `hike` (`id`, `name`, `length`, `date`, `total_time`) VALUES (3, 'Manitou Springs Incline', 3.7, '2020-02-09', '2:06');
+INSERT INTO `hike` (`id`, `name`, `length`, `date`, `total_time`) VALUES (4, 'Elk Falls', 12.3, '2020-03-22', '7:10');
 
 COMMIT;
 
