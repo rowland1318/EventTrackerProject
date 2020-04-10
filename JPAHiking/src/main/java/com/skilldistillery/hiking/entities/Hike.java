@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Hikes {
+public class Hike {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,13 +30,13 @@ public class Hikes {
 		this.name = name;
 	}
 
-	public Hikes(int id, String name) {
+	public Hike(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
 
-	public Hikes() {
+	public Hike() {
 		super();
 	}
 
@@ -67,7 +67,7 @@ public class Hikes {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Hikes other = (Hikes) obj;
+		Hike other = (Hike) obj;
 		if (id != other.id)
 			return false;
 		return true;

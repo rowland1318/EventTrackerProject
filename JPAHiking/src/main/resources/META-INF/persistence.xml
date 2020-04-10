@@ -9,7 +9,7 @@
     </provider>
     
     <!-- Entities -->
-    <class>com.skilldistillery.hiking.entities.Hikes</class>
+    <class>com.skilldistillery.hiking.entities.Hike</class>
 	<!-- End Entities -->
 	
 	

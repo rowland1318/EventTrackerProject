@@ -16,11 +16,11 @@ CREATE SCHEMA IF NOT EXISTS `hikingdb` DEFAULT CHARACTER SET utf8 ;
 USE `hikingdb` ;
 
 -- -----------------------------------------------------
--- Table `hikes`
+-- Table `hike`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `hikes` ;
+DROP TABLE IF EXISTS `hike` ;
 
-CREATE TABLE IF NOT EXISTS `hikes` (
+CREATE TABLE IF NOT EXISTS `hike` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `distance` DOUBLE NULL,
@@ -40,11 +40,11 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `hikes`
+-- Data for table `hike`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `hikingdb`;
-INSERT INTO `hikes` (`id`, `name`, `distance`, `time`) VALUES (1, 'Frog', NULL, NULL);
+INSERT INTO `hike` (`id`, `name`, `distance`, `time`) VALUES (1, 'Frog', NULL, NULL);
 
 COMMIT;
 
