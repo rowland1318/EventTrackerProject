@@ -1,5 +1,6 @@
 package com.skilldistillery.hiking.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,15 +43,15 @@ public class HikeController {
 		return hike;
 	}
 	
-//	@GetMapping("hikes/date/{date}")
+//	@GetMapping("hikes/search/{date}")
 //	public List<Hike> listByDate(@PathVariable(value = "date") LocalDate date) {
 //		return hikeSvc.listByDate(date);
 //	}
-//	
-//	@GetMapping("hikes/{name}")
-//	public List<Hike> listByName(@PathVariable(value = "name") String name) {
-//		return hikeSvc.listByName(name);
-//	}
+	
+	@GetMapping("hikes/search/{name}")
+	public List<Hike> listByName(@PathVariable(value = "name") String name) {
+		return hikeSvc.listByName(name);
+	}
 	
 	@PostMapping("hikes")
 	@ResponseBody
