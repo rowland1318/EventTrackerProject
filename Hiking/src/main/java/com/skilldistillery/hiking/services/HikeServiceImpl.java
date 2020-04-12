@@ -69,7 +69,18 @@ public class HikeServiceImpl implements HikeService {
 			return true;
 		}
 		return false;
+	}
 
 
+	@Override
+	public Hike findById(int hikeId) {
+		Optional<Hike> optHike = hikeRepo.findById(hikeId);
+		Hike hike = null;
+		if (optHike.isPresent()) {
+			hike = optHike.get();
+		} else {
+			return null;
+		}
+		return hike;
 	}
 }

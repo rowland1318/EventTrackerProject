@@ -33,15 +33,24 @@ public class HikeController {
 		
 	}
 	
+	@GetMapping("hikes/{hikeId}")
+	public Hike showById(@PathVariable("hikeId") int id, HttpServletResponse response) {
+		Hike hike = hikeSvc.findById(id);
+		if (hike == null) {
+			response.setStatus(404);
+		}
+		return hike;
+	}
+	
 //	@GetMapping("hikes/date/{date}")
 //	public List<Hike> listByDate(@PathVariable(value = "date") LocalDate date) {
 //		return hikeSvc.listByDate(date);
 //	}
-	
-	@GetMapping("hikes/{name}")
-	public List<Hike> listByName(@PathVariable(value = "name") String name) {
-		return hikeSvc.listByName(name);
-	}
+//	
+//	@GetMapping("hikes/{name}")
+//	public List<Hike> listByName(@PathVariable(value = "name") String name) {
+//		return hikeSvc.listByName(name);
+//	}
 	
 	@PostMapping("hikes")
 	@ResponseBody
