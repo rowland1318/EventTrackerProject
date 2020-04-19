@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 public class Hike {
 	
@@ -16,6 +18,7 @@ public class Hike {
 	private int id;
 	private String name;
 	private double length;
+//	@CreationTimestamp
 	private LocalDate date;
 	
 	@Column(name="total_time")

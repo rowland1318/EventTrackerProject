@@ -16,59 +16,19 @@ function init() {
 
 	document.addHikeForm.eventSubmit.addEventListener('click', function(event) {
 		event.preventDefault();
-		createEvent(document.createEventForm);
+		console.log('You clicked to submit an entry.');
+
+			let form = document.addHikeForm;
+			let hike = {
+				name: form.name.value,
+				length: form.length.value,
+				date: form.date.value,
+				totalTime: form.totalTime.value
+			};
+			createEvent(hike);
+
 	});
 	
-}
-
-function createEvent(formObj) {
-	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'api/hikes/'+formObj.emotion.value, true);
-
-	xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON request body
-
-	xhr.onreadystatechange = function() {
-	  if (xhr.readyState === 4 ) {
-	    if ( xhr.status == 200 || xhr.status == 201 ) { // Ok or Created
-	      var data = JSON.parse(xhr.responseText);
-	      console.log(data);
-	      getAllEvents();
-	    }
-	    else {
-	      console.log("POST request failed.");
-	      console.error(xhr.status + ': ' + xhr.responseText);
-	    }
-	  }
-	};
-
-	var userObject = {
-	  description: formObj.description.value, 
-	};
-	var userObjectJson = JSON.stringify(userObject); // Convert JS object to JSON string
-
-	xhr.send(userObjectJson);
-}
-
-function getAllEvents() {
-	let xhr = new XMLHttpRequest();
-  
-	xhr.open('GET', 'api/hikes/');
-	xhr.onreadystatechange = function (){
-		
-	  if ( xhr.readyState === 4){
-		if( xhr.status === 200){
-		  let dataJSON = xhr.responseText;
-		  let eventsObj = JSON.parse(dataJSON);
-		  console.log(eventsObj);
-		displayAllEvents(eventsObj);
-		}
-		else if ( xhr.status === 404 ){
-		  displayAllEvents(null);
-		  console.log('Events not found.');
-		}
-	  }
-	}
-	xhr.send();
 }
 
 function getEvent(hikeId) {
@@ -93,10 +53,10 @@ function getEvent(hikeId) {
 	xhr.send();
 }
 
- function displayEvent(hike) {
+function displayEvent(hike) {
     let dataDiv = document.getElementById('eventDiv');
     dataDiv.textContent = '';
-    if (event == null){
+    if (hike == null){
 		dataDiv.textContent = 'Event not found';
 	}else{
     let h1 = document.createElement("h1");
@@ -115,6 +75,72 @@ function getEvent(hikeId) {
 	  console.log(dataDiv);
 	}
 }
+
+function displayNotFound(){
+    var dataDiv = document.getElementById('eventDiv');
+    dataDiv.textContent = 'Entry not found';
+}
+
+
+function createEvent(hike) {
+	let hikeJSON = JSON.stringify(hike);
+	console.log(hike);
+	console.log(hikeJSON);
+	
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', 'api/hikes/');
+	xhr.setRequestHeader('Content-type', 'application/json');
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			switch (xhr.status) {
+			case 200:
+			case 201:
+				hikeJSON = xhr.responseText;
+				let hike = JSON.parse(hikeJSON);
+				displayEvent(hike);
+				break;
+			case 400:
+				displayNotFound("Invalid entry data: " + hikeJSON);
+				break;
+			default:
+				displayNotFound("Error occurred: " + xhr.status);
+				break;
+			}
+		}
+	}
+	xhr.send(hikeJSON);
+	console.log(hikeJSON);
+}
+
+function getAllEvents() {
+	let xhr = new XMLHttpRequest();
+  
+	xhr.open('GET', 'api/hikes/');
+	xhr.onreadystatechange = function (){
+		
+	  if ( xhr.readyState === 4){
+		if( xhr.status === 200){
+		  let hikeJSON = xhr.responseText;
+		  let eventsObj = JSON.parse(hikeJSON);
+		  console.log(eventsObj);
+		displayAllEvents(eventsObj);
+		}
+		else if ( xhr.status === 404 ){
+		  displayAllEvents(null);
+		  console.log('Events not found.');
+		}
+	  }
+	}
+	xhr.send();
+}
+
+function tableRowClick(hikeId){
+	//var eventId = event.target.td.event.id;
+	if (!isNaN(hikeId) && hikeId > 0) {
+		getEvent(hikeId);
+	}
+};
 
 function displayAllEvents(events) {
 	var dataDiv = document.getElementById('eventDiv');
@@ -182,3 +208,5 @@ function displayAllEvents(events) {
 		
 	}
 }
+
+
