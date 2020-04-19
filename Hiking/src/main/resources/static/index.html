@@ -2,16 +2,40 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Hiking</title>
-<script src="js/script.js"></script>
+<title>Hiking Tracker</title>
+
 </head>
 <body>
-<h1>Welcome to Hiking</h1>
+<h1>Hiking Tracker</h1>
 
-<!-- SEARCH FIELD AND BUTTON -->
-<!-- HIKE DETAIL DIV WITH UPDATE/DELETE BUTTONS -->
-<!-- LIST ALL HIKES WHEN PAGE LOADS?-->
-<!-- NEW HIKE FORM-->
-<!-- EDIT HIKE FORM-->
+<!-- todo search field and button -->
+ <div id="searchDiv"></div>
+
+ <!-- todo get by id -->
+ <form name="hikeForm">
+	<input type="number" name="hikeId">
+    <button name="lookup">Get Hike by ID</button>
+  </form>
+  <div id="eventDiv"></div>
+
+ <!-- todo event detail div with update/delete buttons -->
+
+ <!-- todo list all? -->
+ <div id="listAllEvents"></div>
+
+ <!-- todo new event form -->
+ 
+ <!-- <div id="formDiv"></div> -->
+ <form name="addHikeForm">
+    Trail Name <input type="text" name="name"><br>
+    Length<input type="number" name="length"><br>
+    Date<input type="date" name="date"><br>
+    Total Time <input type="text" name="totalTime"><br>
+    <input type="submit" name="eventSubmit" value="Submit">
+  </form>
+
+
+ <!-- todo edit event form -->
+ <script src="js/script.js"></script>
 </body>
 </html>
