@@ -120,7 +120,16 @@ function displayEvent(hike) {
     submitButton.setAttribute("type", "submit");
     submitButton.setAttribute("name", "submit");
     submitButton.value = "Edit";
-    editForm.appendChild(submitButton);
+	editForm.appendChild(submitButton);
+	
+    let deleteButton = document.createElement("input");
+    deleteButton.setAttribute("type", "submit");
+    deleteButton.setAttribute("name", "delete");
+    deleteButton.value = "Delete";
+	editForm.appendChild(deleteButton);
+	deleteButton.addEventListener('click',deleteEvent );
+	
+
     submitButton.addEventListener("click", function (e) {
 	  e.preventDefault();
 	  let form = e.target.parentElement;
@@ -213,6 +222,29 @@ function getAllEvents() {
     }
   };
   xhr.send();
+}
+
+function deleteEvent(e){
+	e.preventDefault();
+	let form = e.target.parentElement;
+	var xhr = new XMLHttpRequest();
+	xhr.open('DELETE', 'api/hikes/'+form.hikeId.value, true);
+	xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON request body
+	xhr.onreadystatechange = function() {
+	  if (xhr.readyState === 4 ) {
+	    if ( xhr.status == 200 || xhr.status == 204 ) { // Ok or Created
+	      //var data = JSON.parse(xhr.responseText);
+	      //console.log(data);
+	      getAllEvents();
+	    }
+	    else {
+	      console.log("DELETE request failed.");
+	      console.error(xhr.status + ': ' + xhr.responseText);
+	    }
+	  }
+	};
+	//var userObjectJson = JSON.stringify(userObject); // Convert JS object to JSON string
+	xhr.send();	
 }
 
 function tableRowClick(hikeId) {
