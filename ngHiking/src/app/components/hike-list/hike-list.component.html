@@ -1,1 +1,64 @@
-<p>hike-list works!</p>
+<h1>Hiking Event Tracker</h1>
+
+<div *ngIf="selected && ! editHike">
+  <h4>ID: {{selected.id}}</h4>
+  <h3>{{selected.name}}</h3>
+  <p>Length: {{selected.length}}</p>
+  <p>Date: {{selected.date}}</p>
+  <p>Total Time: {{selected.totalTime}}</p>
+  <button (click)="displayTable()">Back</button>
+  <button (click)="setEditHike()">Edit</button>
+</div>
+<div *ngIf="editHike">
+  <form>
+    <label for="name">Name</label>
+    <input type="text" name="name" [(ngModel)]="editHike.name"> <br>
+    <label for="length">Length</label>
+    <input type="text" name="length" [(ngModel)]="editHike.length"> <br>
+    <label for="date">Date</label>
+    <input type="date" name="date" [(ngModel)]="editHike.date"> <br>
+    <label for="totalTime">Total Time</label>
+    <input type="text" name="totalTime" [(ngModel)]="editHike.totalTime"> <br>
+    <button (click)="updateHike(editHike)">Save</button>
+    <button (click)="editHike = null">Cancel</button>
+  </form>
+</div>
+<div *ngIf="!selected">
+  <table class="table table-striped table-hover">
+    <thead class="thead thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Length</th>
+        <th>Date</th>
+        <th>Total Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hike of hikeList">
+        <td (click)="displayHike(hike)">{{ hike.id }}</td>
+        <td>{{ hike.name }}</td>
+        <td>{{ hike.length }}</td>
+        <td>{{ hike.date }}</td>
+        <td>{{ hike.totalTime }}</td>
+        <td><button class="btn btn-danger" (click)="deleteHike(hike.id)">X</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <form>
+    <label for="name">Name</label>
+    <input class="form-control" type="text" name="name" [(ngModel)]="newHike.name">
+    <label for="length">Length</label>
+    <input class="form-control" type="text" name="length" [(ngModel)]="newHike.length">
+    <label for="date">Date</label>
+    <input class="form-control" type="date" name="date" [(ngModel)]="newHike.date">
+    <label for="totalTime">Total Time</label>
+    <input class="form-control" type="text" name="totalTime" [(ngModel)]="newHike.totalTime">
+    <button class ="btn btn-info"(click)="createHike(newHike)">Add Hike</button>
+  </form>
+</div>
+
+
+
+
+
