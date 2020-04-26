@@ -8,10 +8,10 @@
   <p>Date: {{selected.date}}</p>
   <p>Total Time: {{selected.totalTime}}</p>
   <p>Elevation Gain: {{selected.elevationGain}}</p>
-  <p>Trail Link: {{selected.trailLink}}</p>
   <p>Difficulty: {{selected.difficulty}}</p>
   <p>Special Equiment Needed: {{selected.specialEquipment}}</p>
   <p>Description: {{selected.description}}</p>
+  <p><a href="{{selected.trailLink}}">Trail Link</a></p>
   <button (click)="displayTable()">Back</button>
   <button (click)="setEditHike()">Edit</button>
 </div>
@@ -48,18 +48,20 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Length</th>
         <th>Date</th>
+        <th>Length</th>
         <th>Total Time</th>
+        <th>Difficulty</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let hike of hikeList">
         <td (click)="displayHike(hike)">{{ hike.id }}</td>
         <td (click)="displayHike(hike)">{{ hike.name }}</td>
-        <td (click)="displayHike(hike)">{{ hike.length }}</td>
         <td (click)="displayHike(hike)">{{ hike.date }}</td>
+        <td (click)="displayHike(hike)">{{ hike.length }}</td>
         <td (click)="displayHike(hike)">{{ hike.totalTime }}</td>
+        <td (click)="displayHike(hike)">{{ hike.difficulty }}</td>
         <td><button class="btn btn-danger" (click)="deleteHike(hike.id)">X</button></td>
       </tr>
     </tbody>
