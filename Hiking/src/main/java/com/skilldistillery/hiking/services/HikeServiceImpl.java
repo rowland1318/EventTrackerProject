@@ -53,8 +53,14 @@ public class HikeServiceImpl implements HikeService {
 			Hike managedHike = optHike.get();
 			managedHike.setName(hike.getName());
 			managedHike.setLength(hike.getLength());
-			managedHike.setTotalTime(hike.getTotalTime());
 			managedHike.setDate(hike.getDate());
+			managedHike.setTotalTime(hike.getTotalTime());
+			managedHike.setElevationGain(hike.getElevationGain());
+			managedHike.setPhotoUrl(hike.getPhotoUrl());
+			managedHike.setTrailLink(hike.getTrailLink());
+			managedHike.setDifficulty(hike.getDifficulty());
+			managedHike.setDescription(hike.getDescription());
+			managedHike.setSpecialEquipment(hike.getSpecialEquipment());
 			return hikeRepo.saveAndFlush(managedHike);
 		}
 		return null;

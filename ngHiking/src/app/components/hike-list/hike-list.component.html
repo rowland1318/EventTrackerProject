@@ -3,9 +3,15 @@
 <div *ngIf="selected && ! editHike">
   <h4>ID: {{selected.id}}</h4>
   <h3>{{selected.name}}</h3>
+  <p><img [src]="selected.photoUrl"/></p>
   <p>Length: {{selected.length}}</p>
   <p>Date: {{selected.date}}</p>
   <p>Total Time: {{selected.totalTime}}</p>
+  <p>Elevation Gain: {{selected.elevationGain}}</p>
+  <p>Trail Link: {{selected.trailLink}}</p>
+  <p>Difficulty: {{selected.difficulty}}</p>
+  <p>Special Equiment Needed: {{selected.specialEquipment}}</p>
+  <p>Description: {{selected.description}}</p>
   <button (click)="displayTable()">Back</button>
   <button (click)="setEditHike()">Edit</button>
 </div>
@@ -19,6 +25,19 @@
     <input type="date" name="date" [(ngModel)]="editHike.date"> <br>
     <label for="totalTime">Total Time</label>
     <input type="text" name="totalTime" [(ngModel)]="editHike.totalTime"> <br>
+    <label for="elevationGain">Elevation Gain</label>
+    <input type="text" name="elevationGain" [(ngModel)]="editHike.elevationGain"> <br>
+    <label for="photoUrl">Photo URL</label>
+    <input type="text" name="photoUrl" [(ngModel)]="editHike.photoUrl"> <br>
+    <label for="trailLink">Trail Link</label>
+    <input type="text" name="trailLink" [(ngModel)]="editHike.trailLink"> <br>
+    <label for="difficulty">Difficulty</label>
+    <input type="text" name="difficulty" [(ngModel)]="editHike.difficulty"> <br>
+    <label for="specialEquipment">Special Equiment Needed</label>
+    <input type="text" name="specialEquipment" [(ngModel)]="editHike.specialEquipment"> <br>
+    <label for="description">Description</label>
+    <input type="text" name="description" [(ngModel)]="editHike.description"> <br>
+
     <button (click)="updateHike(editHike)">Save</button>
     <button (click)="editHike = null">Cancel</button>
   </form>
@@ -37,15 +56,15 @@
     <tbody>
       <tr *ngFor="let hike of hikeList">
         <td (click)="displayHike(hike)">{{ hike.id }}</td>
-        <td>{{ hike.name }}</td>
-        <td>{{ hike.length }}</td>
-        <td>{{ hike.date }}</td>
-        <td>{{ hike.totalTime }}</td>
+        <td (click)="displayHike(hike)">{{ hike.name }}</td>
+        <td (click)="displayHike(hike)">{{ hike.length }}</td>
+        <td (click)="displayHike(hike)">{{ hike.date }}</td>
+        <td (click)="displayHike(hike)">{{ hike.totalTime }}</td>
         <td><button class="btn btn-danger" (click)="deleteHike(hike.id)">X</button></td>
       </tr>
     </tbody>
   </table>
-  <form>
+  <!-- <form>
     <label for="name">Name</label>
     <input class="form-control" type="text" name="name" [(ngModel)]="newHike.name">
     <label for="length">Length</label>
@@ -54,6 +73,52 @@
     <input class="form-control" type="date" name="date" [(ngModel)]="newHike.date">
     <label for="totalTime">Total Time</label>
     <input class="form-control" type="text" name="totalTime" [(ngModel)]="newHike.totalTime">
+    <button class ="btn btn-info"(click)="createHike(newHike)">Add Hike</button>
+  </form> -->
+
+
+
+  <form>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" name="name" [(ngModel)]="newHike.name" placeholder="Ye Ole Dusty Trail">
+    </div>
+    <div class="form-group">
+      <label for="length">Trail Length</label>
+      <input type="text" class="form-control" name="length" [(ngModel)]="newHike.length" placeholder="8.13">
+    </div>
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input type="date" class="form-control" name="date" [(ngModel)]="newHike.date">
+    </div>
+    <div class="form-group">
+      <label for="totalTime">Total Time</label>
+      <input type="text" class="form-control" name="totalTime" [(ngModel)]="newHike.totalTime" placeholder="2:30:00">
+    </div>
+    <div class="form-group">
+      <label for="elevationGain">Elevation Gain</label>
+      <input type="text" class="form-control" name="elevationGain" [(ngModel)]="newHike.elevationGain" placeholder="2339">
+    </div>
+    <div class="form-group">
+      <label for="photoUrl">Photo URL</label>
+      <input type="text" class="form-control" name="photoUrl" [(ngModel)]="newHike.photoUrl" placeholder="https://girlsincapes.com/wp-content/uploads/2014/11/Throat-of-the-World.jpg">
+    </div>
+    <div class="form-group">
+      <label for="trailLink">Trail Link</label>
+      <input type="text" class="form-control" name="trailLink" [(ngModel)]="newHike.trailLink" placeholder="https://www.alltrails.com/trail/nepal/province-1/everest-base-camp-trek?u=i">
+    </div>
+    <div class="form-group">
+      <label for="difficulty">Difficulty</label>
+      <input type="text" class="form-control" name="difficulty" [(ngModel)]="newHike.difficulty" placeholder="Easy">
+    </div>
+    <div class="form-group">
+      <label for="specialEquipment">Special Equipment Needed</label>
+      <input type="text" class="form-control" name="specialEquipment" [(ngModel)]="newHike.specialEquipment" placeholder="Snowshoes">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" type="text" name="description" [(ngModel)]="newHike.description" rows="3"></textarea>
+    </div>
     <button class ="btn btn-info"(click)="createHike(newHike)">Add Hike</button>
   </form>
 </div>
