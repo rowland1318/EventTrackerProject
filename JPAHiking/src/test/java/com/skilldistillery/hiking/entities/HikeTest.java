@@ -44,12 +44,18 @@ class HikeTest {
 	@Test
 	void test() {
 		assertNotNull(hike);
-		assertEquals("Bergen Peak", hike.getName());
-		assertEquals(11.8, hike.getLength());
+		assertEquals("The Incline Trail", hike.getName());
+		assertEquals(3.7, hike.getLength());
 		assertEquals(2020, hike.getDate().getYear());
-		assertEquals(4, hike.getDate().getMonthValue());
-		assertEquals(4, hike.getDate().getDayOfMonth());
-		assertEquals("7:17", hike.getTotalTime());
+		assertEquals(1, hike.getDate().getMonthValue());
+		assertEquals(18, hike.getDate().getDayOfMonth());
+		assertEquals("2:30:00", hike.getTotalTime());
+		assertEquals(1922, hike.getElevationGain());
+		assertEquals("https://i.imgur.com/ry9HlSy.jpg", hike.getPhotoUrl());
+		assertEquals("https://www.alltrails.com/trail/us/colorado/the-incline-trail", hike.getTrailLink());
+		assertEquals("Hard", hike.getDifficulty());
+		assertEquals("The Incline Trail is a 3.6 mile heavily trafficked loop trail located near Manitou Springs, Colorado that features beautiful wild flowers and is only recommended for very experienced adventurers. The trail is primarily used for hiking, running, and nature trips and is best used from May until October.", hike.getDescription());
+		assertEquals("N/A", hike.getSpecialEquipment());
 	}
 
 }
